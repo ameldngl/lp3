@@ -25,5 +25,53 @@ summary(mytilus)# nv résumé
 
 ```{r}
 boxplot(Aam ~Location, mytilus, main="taille par ville", col= 1:5+1)
+
+plot(mytilus$Aam)
+abline(h=mean(mytilus$Aam), col="orange", lty=2)
+
+plot(mytilus$Location)
+```
+Résumé par groupe
+
+```{r}
+aggregate(Aam ~Location, mytilus, mean)
+res=tapply(mytilus$Aam,mytilus$Location,median)
+res+1
+res['Newport']
+```
+ANOVA
+```{r}
+mod_aov=aov(Aam~Location, mytilus)
+summary(mod_aov)
+
+mod_lm=lm(Aam~Location, mytilus)
+summary(mod_lm)
+tapply(mytilus$Aam, mytilus$Location, mean)
+  
+```
+```{r}
+#test shapiro par groupe
+tapply(mytilus$Aam, mytilus$Location,shapiro.test)
+shapiro.test(residuals(mod_lm))
+
+qqnorm(residuals(mod_lm))
+qqline(residuals(mod_lm))
+```
+Homogeneité de variances
+```{r}
+car::leveneTest(mytilus$Aam, mytilus$Location)
+car::leveneTest(mod_lm)
+
+
+```
+
+Test Post-Hoc
+```{r}
+TukeyHSD(mod_aov)
+summary(mod_lm)
+```
+Non homogeneite des variances
+```{r}
+(red=oneway.test(Aam~Location , mytilus))
 ```
 
