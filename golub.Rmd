@@ -15,9 +15,39 @@ class(golub)
 class(golub.cl)
 length(golub.cl)
 
-dim(golub)
-class(golub)
+dim(golub.gnames)
+class(golub.gnames)
+head(golub.gnames)
 
+row_m=rowMeans(golub)
+plot(row_m)
+hist(row_m, nclass = 30)
+
+
+
+```
+dispersion
+```{r}
+row_sd= apply(golub, 1, sd)
+plot(row_sd)
+hist(row_sd, ndclass=30)
+row_sd_q=quantile(row_sd, probs = c(0.25,0.50,0.75))
+abline(v=row_sd_q,col="red2", lwd=2)
+
+
+res=t.test(golub.cl, golub[1,])
+str(res)
+res$p.value
+
+score = function(x) {
+    t.test(golub.cl,golub[x,])$p.value
+}
+score(1)
+
+
+
+```
+```{r}
 
 ```
 
