@@ -1,0 +1,10 @@
+---
+title: "anova"
+author: "amel de angeli"
+date: "2025-03-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+```
