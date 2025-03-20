@@ -6,5 +6,16 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+library(readxl)
+mytilus = as.data.frame(read_excel("mytilus.xlsx"))
+mytilus
 
+colnames(mytilus)
+table(mytilus$Location)
+summary(mytilus$Aam)
+summary(mytilus)
+
+mytilus$Location=factor(mytilus$Location)
+
+summary(mytilus)
 ```
