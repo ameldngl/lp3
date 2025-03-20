@@ -15,7 +15,15 @@ table(mytilus$Location)
 summary(mytilus$Aam)
 summary(mytilus)
 
-mytilus$Location=factor(mytilus$Location)
+mytilus$Location=factor(mytilus$Location) #transformer la variable nominale en facteur
 
-summary(mytilus)
+summary(mytilus)# nv résumé
+
+
 ```
+### Résumé graphique
+
+```{r}
+boxplot(Aam ~Location, mytilus, main="taille par ville", col= 1:5+1)
+```
+
