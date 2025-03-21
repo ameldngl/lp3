@@ -51,7 +51,7 @@ for(i in 1:nrow(golub)){
 }
 
 score2 = function(i) {
-    res=t.test(golub.cl,)
+    res=t.test(golub.cl,i)
     return(res$p.value)
 }
 
@@ -68,7 +68,19 @@ row_scores[10]
 score_row=apply(golub,1,score2)
 
 quantile(golub[1,], probs = c(0.25, 0.75))
-qq_row=apply(golub,1, )
+
+
+quartiles = function(x) {
+    quantile(x, probs = c(0.25, 0.75))
+}
+quartiles(golub[1,])
+qq_row=t(apply(golub,1,quartiles))
+
+dim(qq_row)
+
+qq_row=t(apply(golub,1,quantile,probs=c(0.25, 0.75)))
+
+dim(qq_row)
 ```
 
 
