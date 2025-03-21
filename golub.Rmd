@@ -42,6 +42,8 @@ res$p.value
 score = function(i) {
     res=t.test(golub.cl,golub[i,])
     return(res$p.value)
+  res=t.test(golub.cl,golub[i,])
+  return(res$p.value)
 }
 score(1)
 
