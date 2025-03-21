@@ -39,12 +39,33 @@ res=t.test(golub.cl, golub[1,])
 str(res)
 res$p.value
 
-score = function(x) {
-    t.test(golub.cl,golub[x,])$p.value
+score = function(i) {
+    res=t.test(golub.cl,golub[i,])
+    return(res$p.value)
 }
 score(1)
 
+row_scores=NULL
+for(i in 1:nrow(golub)){
+  row_scores[i]=score(i)
+}
 
+score2 = function(i) {
+    res=t.test(golub.cl,)
+    return(res$p.value)
+}
+
+row_scores=NULL
+for(i in 1:nrow(golub)){
+  row_scores[i]=score2(golub[i,])
+}
+
+score2(1)
+score2(10)
+
+row_scores[10]
+
+v=apply(golub,,)
 
 ```
 ```{r}
