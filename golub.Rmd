@@ -40,7 +40,6 @@ str(res)
 res$p.value
 
 score = function(i) {
-    res=t.test(golub.cl,golub[i,])
     return(res$p.value)
   res=t.test(golub.cl,golub[i,])
   return(res$p.value)
@@ -53,8 +52,8 @@ for(i in 1:nrow(golub)){
 }
 
 score2 = function(i) {
-    res=t.test(golub.cl,i)
-    return(res$p.value)
+  res=t.test(golub.cl,i)
+  return(res$p.value)
 }
 
 row_scores=NULL
@@ -62,8 +61,8 @@ for(i in 1:nrow(golub)){
   row_scores[i]=score2(golub[i,])
 }
 
-score2(1)
-score2(10)
+score(1)
+score(10)
 
 row_scores[10]
 
@@ -73,7 +72,7 @@ quantile(golub[1,], probs = c(0.25, 0.75))
 
 
 quartiles = function(x) {
-    quantile(x, probs = c(0.25, 0.75))
+  quantile(x, probs = c(0.25, 0.75))
 }
 quartiles(golub[1,])
 qq_row=t(apply(golub,1,quartiles))
@@ -83,6 +82,29 @@ dim(qq_row)
 qq_row=t(apply(golub,1,quantile,probs=c(0.25, 0.75)))
 
 dim(qq_row)
+
+
+```
+```{r}
+#p-value
+score_row
+hist(row_scores, breaks=20)
+length(score_row)
+
+
+
+
+```
+## Simulations
+###Simulation effet nul
+
+La matrice de mesures contient des valeurs issues d'une loi normale
+
+```{r}
+set.seed(25)
+simu10=matrix(rnorm(nrow(golub)*ncol(golub)),nrow = nrow(golub), ncol=ncol(golub))
+simu10[1:5,1:3]
+image(simu10)
 ```
 
 
