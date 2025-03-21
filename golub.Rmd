@@ -65,10 +65,10 @@ score2(10)
 
 row_scores[10]
 
-v=apply(golub,,)
+score_row=apply(golub,1,score2)
 
+quantile(golub[1,], probs = c(0.25, 0.75))
+qq_row=apply(golub,1, )
 ```
-```{r}
 
-```
 
