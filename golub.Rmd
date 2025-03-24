@@ -53,6 +53,7 @@ for(i in 1:nrow(golub)){
 
 score2 = function(i) {
   res=t.test(golub.cl,i)
+  res=t.test(i~golub.cl)
   return(res$p.value)
 }
 
