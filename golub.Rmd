@@ -148,8 +148,23 @@ hh50=hist(score_simul1,breaks=100/2,plot=TRUE)
 
 FP=mean(hh50$counts[hh50$mids>0.2])#moyenne 
 D=hh50$counts[1]
+D
 FDR= FP/D
 cat(FDR)
+```
+```{r}
+#entrees: vecteur des p values, seuil des p-values, seuil des p values des faux positifs
+#sorties= fdr, nb découvertes
 
+calculFDR = function(score,pValues,pValuesFP) {
+  vecteur=hist(score,breaks=100/pValues,plot=TRUE)
+  FP=mean(vecteur$counts[vecteur$mids>pValuesFP]) 
+  D=vecteur$counts[1]
+  FDR= FP/D
+  return(FDR) 
+}
+
+calculFDR(score_simul1,2,0.2)
+calculFDR(score_simul1,5,0.2)
 ```
 
