@@ -146,12 +146,10 @@ hh1$breaks
 ```{r}
 hh50=hist(score_simul1,breaks=100/2,plot=TRUE)
 
-indices_fp=hh50$mids
-FP=mean(hh1$counts[indices_fp])#moyenne 
-D=hh1$counts[1]
+FP=mean(hh50$counts[hh50$mids>0.2])#moyenne 
+D=hh50$counts[1]
 FDR= FP/D
 cat(FDR)
 
-hh1$breaks
 ```
 
