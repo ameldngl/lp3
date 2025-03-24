@@ -52,7 +52,6 @@ for(i in 1:nrow(golub)){
 }
 
 score2 = function(i) {
-  res=t.test(golub.cl,i)
   res=t.test(i~golub.cl)
   return(res$p.value)
 }
@@ -80,6 +79,7 @@ qq_row=t(apply(golub,1,quartiles))
 
 dim(qq_row)
 
+#écriture simplifiée en passant les parametres directement par apply
 qq_row=t(apply(golub,1,quantile,probs=c(0.25, 0.75)))
 
 dim(qq_row)
@@ -111,6 +111,40 @@ install.packages("pheatmap")
 library(pheatmap)
 pheatmap(simul0)
 
+score_simul0 = apply(simul0, 1, score2)
+
+score_simul1=apply(simul0, 1,score2)
+hist(score_simul1, breaks=20)
+
+
+golub.cl
+simul1=simul0
+simul1[1:300,28:38]=1.5+ simul1[1:300,28:38]
+
+
+pheatmap(simul1)
+pheatmap(simul1, cluster_rows = FALSE, cluster_cols = FALSE)
+
+score_simul1=apply(simul1, 1,score2)
+hist(score_simul1, breaks = 20)
+
+
+which(score_simul1<5/100)
+table(score_simul1<5/100,1:length(score_simul1)<=300)
+
+hist(score_simul1,breaks=20,col="#0088CC44")
+hist(score_simul0,breaks=20,col="#8800CC44", add=TRUE)
+
+#recuperation comptages
+hh1=hist(score_simul1,breaks=20,plot=FALSE)
+hh1$counts
+
+
+
 ```
 
+
+```{r}
+hist()
+```
 
